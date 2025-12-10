@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ultimate Space Shooter (Modular)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameInfo">
+        <h1>ULTIMATE SPACE SHOOTER</h1>
+        <p>Use Arrows/WASD (PC) or **Touch** (Mobile) to Move. **Auto-Fire is Enabled**.</p>
+    </div>
+    
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="startScreen" class="gui-screen">
+        <h2>WELCOME, PILOT!</h2>
+        <button id="playButton" class="gui-button">START GAME</button>
+        <button id="creditsButton" class="gui-button">CREDITS</button>
+    </div>
+
+    <div id="pauseMenu" class="gui-screen hidden">
+        <h2>GAME PAUSED</h2>
+        <button id="resumeButton" class="gui-button">RESUME</button>
+        <button id="pauseRestartButton" class="gui-button">RESTART</button>
+        <button id="pauseQuitButton" class="gui-button">QUIT TO START</button>
+    </div>
+
+    <div id="endScreen" class="gui-screen hidden">
+        <h2 id="endText" style="font-size: 32px;">GAME OVER!</h2>
+        <button id="restartButton" class="gui-button" style="margin-top: 20px;">RESTART GAME</button>
+        <button id="endQuitButton" class="gui-button">QUIT TO START</button>
+    </div>
+    
+    <div id="creditsScreen" class="gui-screen hidden">
+        <h2>CREDITS</h2>
+        <p>Game Design & Code: The Pilot</p>
+        <p>Art Assets: Custom PNGs</p>
+        <p>Special Thanks to Gemini AI for the code assistance!</p>
+        <button id="backToStartButton" class="gui-button" style="margin-top: 30px;">BACK TO START</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

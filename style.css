@@ -1,82 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Centered Game</title>
-<style>
-  /* Make the body a flex container to center content */
-  body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Full viewport height */
-      margin: 0;
-      padding: 0;
-      overflow: hidden; 
-      background-color: #000;
-      font-family: 'Courier New', monospace;
-      position: relative; /* Keep other absolute elements positioned correctly */
-  }
-
-  /* Style for the game info overlay */
-  #gameInfo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      background: rgba(0, 0, 0, 0.5); 
-      color: #fff;
-      z-index: 100;
-  }
-
-  /* Style for the canvas (game area) */
-  canvas { 
-      background: #000; 
-      border: 2px solid #0f0; 
-      box-sizing: border-box;
-      width: 100%;
-      max-width: 600px; 
-      height: auto; /* Adjust height if needed */
-      touch-action: none; 
-      -webkit-user-select: none;
-      user-select: none;
-  }
-</style>
-</head>
-<body>
-
-<div id="gameInfo">Game Info Here</div>
-<canvas id="gameCanvas" width="600" height="400"></canvas>
-
-<script>
-// Your game JavaScript code here
-
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-
-// Example game code: simple animation
-let x = 0;
-
-function draw() {
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'lime';
-  ctx.font = '20px monospace';
-  ctx.fillText('Game is centered!', 50, 50);
-  ctx.fillRect(x, 100, 50, 50);
-  x += 2;
-  if (x > canvas.width) x = -50;
-  requestAnimationFrame(draw);
+/* Make the body a flex container to center content */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    position: relative; /* to keep absolute children positioned correctly */
 }
 
-draw();
+/* Style for the game info overlay */
+#gameInfo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    z-index: 100;
+    text-align: center; /* optional: center the text inside */
+}
 
-// Optional: update game info
-document.getElementById('gameInfo').innerText = 'Use arrow keys to move the square!';
-</script>
-
-</body>
-</html>
+/* Style for the canvas (game area) */
+canvas { 
+    background: #000; 
+    border: 2px solid #0f0; 
+    box-sizing: border-box;
+    width: 600px; /* fixed width for responsiveness */
+    height: 400px; /* fixed height for responsiveness */
+    display: block;
+    margin: 0 auto; /* center horizontally if needed */
+    touch-action: none; 
+    -webkit-user-select: none;
+    user-select: none;
+}

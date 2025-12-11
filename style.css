@@ -3,54 +3,46 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fullscreen Canvas Game</title>
+<title>Centered Canvas Game</title>
 <style>
-  /* Make the body a flex container to center content */
+  /* Body to center the canvas */
   body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Full viewport height */
-      margin: 0;
-      padding: 0;
-      overflow: hidden; 
-      background-color: #000;
-      font-family: 'Courier New', monospace;
-      position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
   }
 
-  /* Style for the game info overlay */
+  /* Optional overlay info at the top */
   #gameInfo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      z-index: 100;
-      text-align: center;
-      font-size: 1.2em;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2em;
+    z-index: 10;
+    pointer-events: none;
   }
 
-  /* Style for the canvas (game area) */
+  /* Canvas with fixed size */
   canvas {
-      display: block;
-      width: 100vw; /* Full viewport width */
-      height: 100vh; /* Full viewport height */
-      background: #000; 
-      border: none; /* Remove border for full screen effect */
-      box-sizing: border-box;
-      touch-action: none; 
-      -webkit-user-select: none;
-      user-select: none;
+    /* Use your desired fixed size here, e.g., 800x600 */
+    width: 800px;
+    height: 600px;
+    background: #000;
+    display: block;
+    border: 2px solid #fff; /* optional border */
   }
 </style>
 </head>
 <body>
-<div id="gameInfo">Fullscreen Canvas Game</div>
-<canvas id="gameCanvas"></canvas>
+<div id="gameInfo">Centered Canvas Game</div>
+<canvas id="gameCanvas" width="800" height="600"></canvas>
 
 <script>
 const canvas = document.getElementById('gameCanvas');
@@ -58,34 +50,23 @@ const ctx = canvas.getContext('2d');
 
 let x = 0;
 
-// Function to resize the canvas to fill the window
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas(); // initial resize
-
 // Animation loop
 function draw() {
-    // Fill background
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw moving rectangle
     ctx.fillStyle = 'lime';
     ctx.font = '20px monospace';
-    ctx.fillText('Game is fullscreen!', 50, 50);
+    ctx.fillText('Game is centered!', 50, 50);
     ctx.fillRect(x, 100, 50, 50);
 
-    // Update position
     x += 2;
     if (x > canvas.width) x = -50;
 
     requestAnimationFrame(draw);
 }
 
-// Start animation
+// Start the animation
 draw();
 </script>
 </body>

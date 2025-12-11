@@ -1,41 +1,92 @@
-/* Make the body a flex container to center content */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
-    background-color: #000;
-    font-family: 'Courier New', monospace;
-    position: relative; /* to keep absolute children positioned correctly */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fullscreen Canvas Game</title>
+<style>
+  /* Make the body a flex container to center content */
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full viewport height */
+      margin: 0;
+      padding: 0;
+      overflow: hidden; 
+      background-color: #000;
+      font-family: 'Courier New', monospace;
+      position: relative;
+  }
+
+  /* Style for the game info overlay */
+  #gameInfo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      z-index: 100;
+      text-align: center;
+      font-size: 1.2em;
+  }
+
+  /* Style for the canvas (game area) */
+  canvas {
+      display: block;
+      width: 100vw; /* Full viewport width */
+      height: 100vh; /* Full viewport height */
+      background: #000; 
+      border: none; /* Remove border for full screen effect */
+      box-sizing: border-box;
+      touch-action: none; 
+      -webkit-user-select: none;
+      user-select: none;
+  }
+</style>
+</head>
+<body>
+<div id="gameInfo">Fullscreen Canvas Game</div>
+<canvas id="gameCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let x = 0;
+
+// Function to resize the canvas to fill the window
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // initial resize
+
+// Animation loop
+function draw() {
+    // Fill background
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw moving rectangle
+    ctx.fillStyle = 'lime';
+    ctx.font = '20px monospace';
+    ctx.fillText('Game is fullscreen!', 50, 50);
+    ctx.fillRect(x, 100, 50, 50);
+
+    // Update position
+    x += 2;
+    if (x > canvas.width) x = -50;
+
+    requestAnimationFrame(draw);
 }
 
-/* Style for the game info overlay */
-#gameInfo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    z-index: 100;
-    text-align: center; /* optional: center the text inside */
-}
-
-/* Style for the canvas (game area) */
-canvas { 
-    background: #000; 
-    border: 2px solid #0f0; 
-    box-sizing: border-box;
-    width: 600px; /* fixed width for responsiveness */
-    height: 400px; /* fixed height for responsiveness */
-    display: block;
-    margin: 0 auto; /* center horizontally if needed */
-    touch-action: none; 
-    -webkit-user-select: none;
-    user-select: none;
-}
+// Start animation
+draw();
+</script>
+</body>
+</html>
